@@ -1,7 +1,9 @@
+import { User } from 'src/Users/entity/user.entity';
 import {
   Column,
   CreateDateColumn,
   Entity,
+  ManyToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
 
@@ -16,8 +18,8 @@ export class Post {
   @Column({ type: 'text', nullable: false })
   body: string;
 
-  @Column({ type: 'text', nullable: false })
-  author: string;
+  @ManyToOne(() => User)
+  user: User;
 
   @CreateDateColumn({
     type: 'timestamp',

@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Param } from '@nestjs/common';
+import { Controller, Get, Post, Body, Query } from '@nestjs/common';
 import { PostsService } from './posts.service';
 import { CreatePostDto } from './dto/createPost.dto';
 
@@ -16,8 +16,18 @@ export class PostsController {
     return this.postsService.findAll();
   }
 
-  @Get(':id')
-  findOne(@Param('id') id: string) {
+  @Get('/byId')
+  findOne(@Query('id') id: string) {
     return this.postsService.findOne(+id);
+  }
+
+  @Get('/byUser')
+  findAllByUsers(@Query('username') users: string[]) {
+    return this.postsService.findAllByUsers(users);
+  }
+
+  @Get('/byDate')
+  findAllSorted(@Query('order') orderType: 'asc' | 'desc') {
+    return this.postsService.findAllOrderedByDate(orderType);
   }
 }
