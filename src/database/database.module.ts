@@ -22,8 +22,10 @@ import { getConfig } from '../config';
             synchronize: true,
             entities: [__dirname + '/../**/*.entity.js'],
           };
-        } catch (error) {
-          logger.error(`Failed to connect to database: ${error.message}`);
+        } catch (error: unknown) {
+          const errorTyped = error as Error;
+          const errorMessage = errorTyped.message || 'Unknown error';
+          logger.error(`Failed to connect to database: ${errorMessage}`);
           throw error;
         }
       },
