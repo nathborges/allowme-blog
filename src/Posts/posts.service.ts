@@ -84,10 +84,15 @@ export class PostsService {
   // @TODO: create a module specific for seeder
   async seeder() {
     const posts: PostType[] = [];
-    const allUsers: User[] = await this.usersService.findAll();
 
+    const allUsers: User[] = await this.usersService.findAll();
     if (!allUsers) {
       Logger.error('It was not possible to seed new posts.');
+    }
+
+    const postsAlreadyExists: Post[] = await this.postsRepository.find();
+    if (postsAlreadyExists.length > 0) {
+      return;
     }
 
     for (let i = 0; i < data.length; i++) {

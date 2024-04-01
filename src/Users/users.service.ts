@@ -45,6 +45,13 @@ export class UsersService {
   // @TODO: create a module specific for seeder
   async seeder() {
     const users: UserType[] = [];
+
+    const usersThatAlreadyExist: User[] = await this.usersRepository.find();
+
+    if (usersThatAlreadyExist.length > 0) {
+      return;
+    }
+
     const numUsers = 10;
     for (let i = 0; i < numUsers; i++) {
       const full_name = faker.person.fullName();
