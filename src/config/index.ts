@@ -1,5 +1,6 @@
 export interface AppConfig {
   port: number;
+  apiKey: string;
   database: DbConfig;
 }
 
@@ -19,6 +20,7 @@ export interface DbConfig {
 export const getConfig = (): AppConfig => {
   return {
     port: parseInt(process.env.PORT as string, 10) || 3000,
+    apiKey: process.env.API_KEY as string,
     database: {
       host: process.env.DB_HOST as string,
       port: parseInt(process.env.DB_PORT as string, 10) || 5432,
