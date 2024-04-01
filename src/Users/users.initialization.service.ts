@@ -4,16 +4,20 @@ import {
   OnModuleInit,
 } from '@nestjs/common';
 import { UsersService } from './users.service';
+import { AppEnv, getConfig } from '../config';
 
 @Injectable()
 export class UsersInitializationService implements OnModuleInit {
   constructor(private readonly usersService: UsersService) {}
 
   async onModuleInit() {
-    if (process.env.ACTIVE_SEEDERS === 'false' || !process.env.ACTIVE_SEEDERS) {
+    if (getConfig().env == AppEnv.PROD) {
       return;
     }
 
+    if (getConfig().activeSeeders === 'false' || !process.env.ACTIVE_SEEDERS) {
+      return;
+    }
     try {
       await this.usersService.seeder();
     } catch (error) {
