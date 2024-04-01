@@ -11,12 +11,18 @@ export class AuthMiddleware implements NestMiddleware {
   use(req: Request, res: Response, next: NextFunction) {
     const { apiKey } = getConfig();
 
-    const givenApiKey = req.headers['x-api-key'];
-
-    if (givenApiKey == apiKey) {
-      return next();
+    const authorizationHeader = req.headers['authorization'];
+    if (!authorizationHeader || !authorizationHeader.startsWith('Bearer ')) {
+      throw new UnauthorizedException(
+        'Missing or invalid authorization header',
+      );
     }
 
-    throw new UnauthorizedException();
+    const token = authorizationHeader.substring(7);
+    if (token !== apiKey) {
+      throw new UnauthorizedException('Invalid API key');
+    }
+
+    next();
   }
 }
