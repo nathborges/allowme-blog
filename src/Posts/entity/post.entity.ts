@@ -18,7 +18,7 @@ export class Post {
   @Column({ type: 'text', nullable: false })
   body: string;
 
-  @ManyToOne(() => User)
+  @ManyToOne(() => User, { nullable: false })
   user: User;
 
   @CreateDateColumn({
