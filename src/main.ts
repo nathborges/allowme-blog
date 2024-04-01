@@ -4,12 +4,14 @@ startDotenv();
 
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
-import { getConfig } from './config';
+import { AppEnv, getConfig } from './config';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 
 async function bootstrap() {
+  const isProd = getConfig().env !== AppEnv.PROD;
+
   const { port } = getConfig();
-  const app = await NestFactory.create(AppModule);
+  const app = await NestFactory.create(AppModule, { cors: isProd });
 
   const config = new DocumentBuilder()
     .setTitle('AllowMe Blog API')
