@@ -1,6 +1,7 @@
 import {
   Injectable,
   InternalServerErrorException,
+  Logger,
   OnModuleInit,
 } from '@nestjs/common';
 import { UsersService } from './users.service';
@@ -12,12 +13,19 @@ export class UsersInitializationService implements OnModuleInit {
 
   async onModuleInit() {
     if (getConfig().env == AppEnv.PROD) {
+      Logger.warn(
+        `User seeding service will not run -  ENV: ${getConfig().env}`,
+      );
       return;
     }
 
     if (getConfig().activeSeeders === 'false' || !process.env.ACTIVE_SEEDERS) {
+      Logger.warn(
+        `User seeding service will not run -  ACTIVE_SEEDERS: ${getConfig()}`,
+      );
       return;
     }
+
     try {
       await this.usersService.seeder();
     } catch (error) {

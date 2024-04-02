@@ -1,6 +1,7 @@
 import {
   Injectable,
   InternalServerErrorException,
+  Logger,
   OnModuleInit,
 } from '@nestjs/common';
 import { PostsService } from './posts.service';
@@ -12,10 +13,16 @@ export class PostsInitializationService implements OnModuleInit {
 
   async onModuleInit() {
     if (getConfig().env == AppEnv.PROD) {
+      Logger.warn(
+        `Post seeding service will not run -  ENV: ${getConfig().env}`,
+      );
       return;
     }
 
     if (getConfig().activeSeeders === 'false' || !process.env.ACTIVE_SEEDERS) {
+      Logger.warn(
+        `Post seeding service will not run -  ACTIVE_SEEDERS: ${getConfig()}`,
+      );
       return;
     }
 
