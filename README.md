@@ -28,6 +28,10 @@ kill -9 <PID>
 Atenção, esse projeto usa o node 18.19.0. Caso você não tenha o nvm (aplicação de versionamento de node) na sua máquina, seu ambiente precisa estar settado com essa versão de node.
 
 ```
+Para subir o banco:
+docker run -p 5432:5432 -e POSTGRES_PASSWORD=admin123 -e POSTGRES_DB=allowme-blog -e POSTGRES_USER=admin postgres
+
+Em outro terminal, rode:
 nvm use .
 npm i
 npm run start:dev
