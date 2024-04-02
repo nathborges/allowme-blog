@@ -47,6 +47,11 @@ Atenção, a Api key está no arquivo .env.
   <a href="https://www.docker.com/"><img src="https://img.shields.io/badge/-Docker-2496ED?style=flat-square&logo=docker&logoColor=white" alt="Docker"/></a>
 </div>
 
+
+## Arquitetura
+
+![arq drawio](https://github.com/nathborges/allowme-blog/assets/84536972/76dbc051-f5cf-4a64-b14c-8699bf8b4263)
+
 ## Postgres 
 ## Descrição das tabelas
 
