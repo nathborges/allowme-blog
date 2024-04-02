@@ -3,8 +3,8 @@
 
 ## Sobre
 
-Essa é uma aplicação de backend de uma aplicação web de blog pessoal.
-O front-end está em um repositório diferente, clique nesse link para acessá-lo.
+Essa é o web backend de uma aplicação de blog pessoal.
+O front-end está em um repositório diferente, clique [nesse link](https://github.com/nathborges/allowme-blog-front) para acessá-lo.
 
 
 ## Como iniciar o projeto
