@@ -56,8 +56,8 @@ export class PostsController {
   @ApiBadRequestResponse({
     description: 'Bad request when trying to get the posts by user',
   })
-  findAllByUsers(@Query('username') users: string[]) {
-    return this.postsService.findAllByUsers(users);
+  findAllByUsers(@Query('username') username: string) {
+    return this.postsService.findAllByUser(username);
   }
 
   @Get('/byDate')

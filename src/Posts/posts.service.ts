@@ -40,11 +40,11 @@ export class PostsService {
     return await this.postsRepository.findOne({ where: { id } });
   }
 
-  async findAllByUsers(usernames: string[]) {
+  async findAllByUser(username: string) {
     return await this.postsRepository.find({
       where: {
         user: {
-          username: In(usernames),
+          username,
         },
       },
       relations: ['user'],
