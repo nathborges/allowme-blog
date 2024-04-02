@@ -1,9 +1,6 @@
 # AllowMe Blog - Backend
  
 
-## Content
-
-
 ## Sobre
 
 Essa é uma aplicação de backend de uma aplicação web de blog pessoal.
@@ -37,7 +34,8 @@ npm run start:dev
 ```
 5. Para verificar a documentação da api, acesse http://localhost:3000/api
 Atenção, a Api key está no arquivo .env.
- 
+
+ Caso tenha algum erro para iniciar o projeto, crie uma issue que irei te ajudar!
  
  ## Tecnologias usadas
  
@@ -68,3 +66,10 @@ Field | Description
  title | Título da postagem
  body | Conteúdo principal da postagem
  userId | Chave estrangeira que referencia Users
+
+ ## Próximos passos
+ - Criar um modulo especifico para o seeders (tá uma gambiarra enorme ali kkkkk), utilizando a própria lib do TYPEORM para isso.
+ - Criar um endpoint que pegue todos os posts com filtros dinâmicos que podem ser agregados, diminuindo assim a quantidade de endpoints.
+ - Testes unitários.
+ - Melhorar os loggers, adicionando nomes de loggers específicos para cada classe e processo. Tracking é uma coisa muito importante, mas obviamente, tomando cuidado com os dados sensíveis.
+ - Adicionar um endpoint de login com tokenização.
